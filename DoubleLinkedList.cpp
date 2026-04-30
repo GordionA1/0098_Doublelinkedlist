@@ -89,7 +89,38 @@ public:
 
         Node *current = START;
 
-    
+        //  Step 1: Traverse the list to find th enode
+        while (current != NULL && current->noMhs != rollNo)
+            current = current->next;
+        if (current == NULL)
+        {
+            cout << "Record not found" << endl;
+            return;
+        }
+
+        // Step 2: If node is at the beginning
+        if (current == START)
+        {
+            START = current->next;     //   Step 2a
+            if (START != NULL)
+            {
+                START->prev = NULL;     //  Step 2b
+            }
+            
+        }
+        else
+        {
+            // Step 3: link previous node to next of current
+            current->prev->next = current->next;
+
+            // Step 4: if current is not the last node
+            if (current->next != NULL)
+                current->next->prev = current->prev;
+        }
+
+        // Step 5
+        delete current;
+        cout << "Record with roll number " << rollNo << " deleted" << endl;
     }
 
 };
