@@ -145,5 +145,10 @@ public:
             i++;
         } 
     }
+     void revtraverse()
+    {
+
+    }
+
 };
 
